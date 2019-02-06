@@ -1,10 +1,10 @@
 #OCLSDKDIR = /usr/local/cuda
-OCLSDKDIR = ${AMDAPPSDKROOT}
+OCLSDKDIR = ${OPENCL}
 CPP = g++
 OCLSDKINC = ${OCLSDKDIR}/include
-OCLSDKLIB = ${OCLSDKDIR}/lib/x86_64
+OCLSDKLIB = ${OCLSDKDIR}/lib64
 OPTFLAG =  -fomit-frame-pointer
-#INCLUDES = -I../common/inc
+INCLUDES = -I ${OPENCL}/include
 FLAGS = -std=c++11 -O2 ${INCLUDES} -I${OCLSDKINC} 
 LFLAGS = -L${OCLSDKLIB} 
 LIBPARS = -lOpenCL -lrt

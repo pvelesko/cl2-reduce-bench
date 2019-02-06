@@ -7,7 +7,6 @@
 #include <string>  
 #include <CL/cl.hpp>
 
-#define WG_SIZE 256
 #define _MAKE_STR(A) #A
 #define MAKE_STR(A) _MAKE_STR(A)
 
@@ -105,6 +104,10 @@ void outputInfo(unsigned int result, double elapsedTime, int workitems){
 
 int main(void) {  
 	std::cout << "Workgroup and sub-workgroup OpenCL 2.0 function evaluation test case" << std::endl;
+	std::cout << "Select WorkGroup Size:" << std::endl;
+	int WG_SIZE;
+  std::cin >> WG_SIZE;
+  	
 	cl::Platform pl;
 	cl::Device dev;
 	selectPlatformDevice(pl, dev);
@@ -134,7 +137,7 @@ int main(void) {
 	size_t vEnd = sInfo.find('.', 0);
 	size_t vStart = sInfo.rfind(' ', vEnd);
 	int CLMajorVer = std::stoi( sInfo.substr(vStart + 1, vEnd - vStart - 1) ), CLMinorVer = std::stoi( sInfo.substr(vEnd + 1, 1) );
-	std::string str_cl_parameters("-DWG_SIZE=" MAKE_STR(WG_SIZE) " -Werror ");
+	std::string str_cl_parameters("-DWG_SIZE=" + std::to_string(WG_SIZE) + " -Werror ");
 	bool cl_subgroups = false, cl_ver20 = false;
 	if( CLMajorVer>=2 ) {
 		std::cout << "Great! OpenCL 2.0 is supported :)" << std::endl;
